@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<avg id="root" width="1280" height="800">
+<div id="active_area" x="0" y="0" width="1280" height="800">
+	<image id="gras" x="0" y="0" opacity="1" href="../img/wiese_ohne_tor.png" width = "1280" height = "800"/>
+	<image id="logo" x="500" y="280" opacity="0" href="../img/logo.png" />
+</div>	
+
+    <image id="fingers" x="1" y="1" active="false" 
+            sensitive="false" angle="3.14159"/>
+</avg>
