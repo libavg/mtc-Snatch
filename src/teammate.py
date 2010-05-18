@@ -52,7 +52,7 @@ class Teammate:
     ##    show the score for the winner
     def __displayScore(self):
         ##    node for the winner time
-        self.winnerTime = self.game.player.createNode('words', { "text":str(self.score.points), "color":"661b25", "size":36}) 
+        self.winnerTime = self.game.player.createNode('words', { "text":str(self.score.points), "color":"661b25", "fontsize":36}) 
         self.score.score.appendChild(self.winnerTime)
         self.score.score.x = self.__goal.winner.x + 50
         self.score.score.y = self.__goal.winner.y + 50
@@ -111,7 +111,7 @@ class Teammate:
                            self.__collected[i][1] = 0  
                 self.__game.popAnimals(None,None,list)
             elif self.__collected[animalObject.type][0] != None and animalObject.id != self.__collected[animalObject.type][0].id:
-           self.__goal.placesTaken[self.__collected[animalObject.type][1]] = False  
+               self.__goal.placesTaken[self.__collected[animalObject.type][1]] = False  
                self.__game.popAnimals(self.__collected[animalObject.type][0].animalIndex,animalObject.animalIndex,None)
                #self.__goal.placesTaken[self.__collected[animalObject.type][1]] = False   
                self.__collected[animalObject.type][1] = 0                        

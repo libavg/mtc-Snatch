@@ -49,7 +49,7 @@ class Score:
         ## Node display the points
         self.text = game.player.createNode('words', { "text":str(self.points), 
                                                       "color":"661b25", 
-                                                      "size":36}) 
+                                                      "fontsize":36}) 
         self.score.appendChild(self.text)
     
 
@@ -57,7 +57,7 @@ class Score:
     ##    display new amount 
     def update(self):
         useful.deleteNode(self.text)
-        self.text = self.__game.player.createNode('words', { "text":str(self.points), "color":"661b25", "size":36}) 
+        self.text = self.__game.player.createNode('words', { "text":str(self.points), "color":"661b25", "fontsize":36}) 
         self.score.appendChild(self.text)
      
     ##    remove the DivNode from the tree

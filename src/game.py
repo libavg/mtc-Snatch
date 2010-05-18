@@ -104,7 +104,7 @@ class Game:
         if self.__countInit > 0:
             self.__resetGame()
         self.__countInit += 1
-        self.soundBg[0].sound.play()  
+#        self.soundBg[0].sound.play()  
         self.__createMenu()
         
     
@@ -127,8 +127,8 @@ class Game:
                 self.__moleActive = True
             else:
                 self.__moleActive = False     
-            self.soundBg[0].sound.stop()
-            self.soundBg[1].sound.play()                     
+#            self.soundBg[0].sound.stop()
+#            self.soundBg[1].sound.play()                     
             self.freeAnimal = self.animalAmount    
             self.__createAnimal(self.animalAmount)
             self.__highscoreTime = self.player.getFrameTime()
@@ -142,8 +142,8 @@ class Game:
     
     ##    terminates the current round
     def stopGame(self):
-        self.soundBg[1].sound.stop()
-        self.soundBg[0].sound.play()
+#        self.soundBg[1].sound.stop()
+#        self.soundBg[0].sound.play()
         self.__deleteAllAnimals()
         self.__disableGoals()
         self.player.clearInterval(self.__displayScore)
@@ -190,15 +190,15 @@ class Game:
         if self.__highScore != None:
            self.__highScore.deletehighscore()
            self.__highScore = None 
-    if self.__tutorial != None:
-        self.tutorialSound.sound.stop()
+        if self.__tutorial != None:
+            self.tutorialSound.sound.stop()
             useful.deleteNode(self.__tutorial)
-        self.__tutorialVideo.stop()
+            self.__tutorialVideo.stop()
             self.__tutorial = None
-        if self.__credits != None:
-            useful.deleteNode(self.__credits)
-            self.__credits = None        
-    self.__deleteMenu()
+            if self.__credits != None:
+                useful.deleteNode(self.__credits)
+                self.__credits = None        
+        self.__deleteMenu()
         
     
 #===============================================================================
@@ -213,7 +213,7 @@ class Game:
        self.__highScore = highscore.Highscore("winner1", self, 485, 320, self.__highscoreTime)  
        self.__mainButton = startButton.StartButton(self, self.__showActivateButtons, 590, 340,"../img/buttonstart.png", 0,160, 85, False)
        self.__highscoreButton = startButton.StartButton(self, self.__highScore.displayHighscore, 390, 240,"../img/highscorebutton.png", 0,160, 85, False)
-       self.__tutorialButton = startButton.StartButton(self, self.__displayTutorial, 790, 240,"../img/tutorial.png", 0,160, 85, False)
+#       self.__tutorialButton = startButton.StartButton(self, self.__displayTutorial, 790, 240,"../img/tutorial.png", 0,160, 85, False)
        self.__creditsButton = startButton.StartButton(self, self.__displayCredits, 390, 440,"../img/credits.png", 0,160, 85, False)
        self.__exitButton = startButton.StartButton(self, self.__exitGame, 790, 440,"../img/exit.png", 0,160, 85, False)
     
@@ -224,20 +224,20 @@ class Game:
 
    ##    delete the five buttons of the menu
     def __deleteMenu(self):
-    if self.__mainButton != None:
-        self.__mainButton.delStartButton()
-        self.__highscoreButton.delStartButton()
-        self.__tutorialButton.delStartButton()
-        self.__creditsButton.delStartButton()
-        self.__exitButton.delStartButton()
+        if self.__mainButton != None:
+            self.__mainButton.delStartButton()
+            self.__highscoreButton.delStartButton()
+#            self.__tutorialButton.delStartButton()
+            self.__creditsButton.delStartButton()
+            self.__exitButton.delStartButton()
      
     ##    delete all possible displayed Nodes
     def __backToMenu(self):
 
         if self.__tutorial != None:
-        self.tutorialSound.sound.stop()
+            self.tutorialSound.sound.stop()
             useful.deleteNode(self.__tutorial)
-        self.__tutorialVideo.stop()
+            self.__tutorialVideo.stop()
             self.__tutorial = None
         if self.__credits != None:
             useful.deleteNode(self.__credits)
@@ -296,12 +296,12 @@ class Game:
     #     @param avg event
     def __showActivateButtons(self, event):
         ##    remind timeout id 
-    #
-    self.__deleteMenu()
-    self.player.setTimeout(400,self.__resetScreen)
+        #
+        self.__deleteMenu()
+        self.player.setTimeout(400,self.__resetScreen)
         self.__startGameID = self.player.setTimeout(5000, self.__startGame) 
         
-    #self.__backToMenu() 
+        #self.__backToMenu() 
         self.__startButtonsPlayer.append(startButton.StartButton(self, self.__onClickPlayer1, 140, 340, "../img/button.png", 1.57, 132, 65, True))
         self.__startButtonsPlayer.append(startButton.StartButton(self, self.__onClickPlayer2, 580, 150, "../img/button.png", 3.14, 132, 65, True))
         self.__startButtonsPlayer.append(startButton.StartButton(self, self.__onClickPlayer3, 990, 340, "../img/button.png", -1.57, 132, 65, True))
@@ -386,9 +386,9 @@ class Game:
             self.__tutorialVideo.play()
             self.__tutorial.appendChild(self.__tutorialVideo)
             self.createPlayAgainB()
-        self.soundBg[0].sound.stop()
+#            self.soundBg[0].sound.stop()
             self.__deleteMenu()
-        self.tutorialSound = soundeffect.SoundEffect(self, "../sound/tsound03.wav", 0, False)
+            self.tutorialSound = soundeffect.SoundEffect(self, "../sound/tsound03.wav", 0, False)
             self.tutorialSound.sound.play()            
 
     ##    count the amount of activated players
@@ -498,7 +498,7 @@ class Game:
         ##    initialize sound nodes for special effects
         self.specialSounds = [soundeffect.SoundEffect(self, "../sound/tor_collision.wav", 0, False), soundeffect.SoundEffect(self, "../sound/igel_special.wav", 0, False), soundeffect.SoundEffect(self, "../sound/tor_schaf_schwarz.wav", 0, False), soundeffect.SoundEffect(self, "../sound/winner.wav", 0, False)]
         ##    initialize sound nodes for background 
-        self.soundBg = [soundeffect.SoundEffect(self, "../sound/bg.wav", 1, False), soundeffect.SoundEffect(self, "../sound/wiese_bg.wav", 1, False)]
+#        self.soundBg = [soundeffect.SoundEffect(self, "../sound/bg.wav", 1, False), soundeffect.SoundEffect(self, "../sound/wiese_bg.wav", 1, False)]
     
 
 

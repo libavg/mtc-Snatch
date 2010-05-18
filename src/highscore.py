@@ -96,7 +96,7 @@ class Highscore():
                                                "opacity": 1,
                                                "x":x, "y":y,})
          __root.appendChild(self.__canvasBackground)
-         self.__winnerCanvas = self.__game.player.createNode('canvas', { 
+         self.__winnerCanvas = self.__game.player.createNode('div', { 
                                                        "width":284, "height":139,
                                                        "angle":angle,
                                                        "opacity": 1,
@@ -115,9 +115,10 @@ class Highscore():
      def get_Directory(self):
          list = []
          ausgefuehrt = False
-         for filename in os.listdir("../highscore/"):     
-           list.append(filename)
-           ausgefuehrt = True 
+         for filename in os.listdir("../highscore/"):
+             if filename[0] != '.':
+                 list.append(filename)
+                 ausgefuehrt = True 
          if ausgefuehrt ==False:
              return False
          else:  
@@ -258,8 +259,8 @@ class Highscore():
          intTime=float(time[0:-4])/1000
          time = str(intTime)
          self.__time = self.__game.player.createNode('words', { "text":time, 
-                                                                      "color":"661b25", 
-                                                                      "size":20 ,"x": self.__highscorePos[x][0]+165,"y": self.__highscorePos[x][1]+10})
+                    "color":"661b25", "fontsize":20 ,
+                    "x": self.__highscorePos[x][0]+165,"y": self.__highscorePos[x][1]+10})
          if x<=4:                
             self.__placebgLeft.appendChild(self.__name)
             self.__placebgLeft.appendChild(self.__time)
@@ -309,9 +310,10 @@ class Highscore():
          self.__name = self.__game.player.createNode('image', { "href": filename, "x": self.__highscorePos[self.HighscorePosition][0], "y": self.__highscorePos[self.HighscorePosition][1], "width": 150, "height": 75,"opacity":0})
          intTime = float(time)/1000
          time = str(intTime)
-         self.__time = self.__game.player.createNode('words', { "text":time, 
-                                                                      "color":"661b25", 
-                                                                      "size":20 ,"x": self.__highscorePos[self.HighscorePosition][0]+165,"y": self.__highscorePos[self.HighscorePosition][1]+10,"opacity":0})
+         self.__time = self.__game.player.createNode('words', { "text":time,
+                "color":"661b25", "fontsize":20 ,
+                "x": self.__highscorePos[self.HighscorePosition][0]+165,
+                "y": self.__highscorePos[self.HighscorePosition][1]+10,"opacity":0})
          if self.HighscorePosition<=4:                
             self.__placebgLeft.appendChild(self.__name)
             self.__placebgLeft.appendChild(self.__time)
@@ -359,14 +361,20 @@ class Highscore():
                   xmove = Event.x-self.__gloX
                   ymove = Event.y-self.__gloY
                   if self.__firstDown == True:
-                    line = self.__game.player.createNode("line", {"x1":self.__offset[0], "y1":self.__offset[1], "x2":self.__offset[0], "y2":self.__offset[1],"strokewidth":4,"color":"FF0000"})
+                    line = self.__game.player.createNode("line", {
+                        "pos1":(self.__offset[0], self.__offset[1]),
+                        "pos2":(self.__offset[0], self.__offset[1]),
+                        "strokewidth":4,"color":"FF0000"})
                     self.__drawList.append((self.__offset[0]+self.__gloX,self.__offset[1]+self.__gloY))
                     self.__drawList.append((self.__offset[0]+self.__gloX,self.__offset[1]+self.__gloY))
                     self.__winnerCanvas.appendChild(line)
                     #list.append((offset[0], offset[1]))
                     self.__firstDown=False
                   else:
-                    line = self.__game.player.createNode("line", {"x1":self.__xold, "y1":self.__yold, "x2":xmove, "y2":ymove,"strokewidth":4,"color":"FF0000"})
+                    line = self.__game.player.createNode("line", {
+                        "pos1":(self.__xold, self.__yold), 
+                        "pos2":(xmove, ymove),
+                        "strokewidth":4,"color":"FF0000"})
                     self.__drawList.append((self.__xold,self.__yold))
                     self.__drawList.append((xmove,ymove))
                    

@@ -93,7 +93,7 @@ class Goal():
                 self.placesTaken[place] = True
                 animalObj.animal.x = self.__places[place][0]
                 animalObj.animal.y = self.__places[place][1]
-        animalObj.animal.angle = self.goal.angle
+                animalObj.animal.angle = self.goal.angle
                 return place
                 break;
             

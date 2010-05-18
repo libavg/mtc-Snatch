@@ -147,7 +147,7 @@ class Animal:
                 if self.state == CAUGHT:        
                     collision.catchedControl(self, False)
                     self.startCollision()
-            self.startMove()
+                    self.startMove()
                     self.bounceX=-1
                 if self.state != CAUGHT:
                     if (self.game.player.getFrameTime() - self.__lastMouseDownFrameTime) < 500 and self.type == IGEL and self.cooldown <= self.game.player.getFrameTime():
@@ -178,7 +178,7 @@ class Animal:
             if collision.isCaught(self):
                 self.state = CAUGHT 
                 self.stopCollision()
-        self.stopMove()
+                self.stopMove()
                 self.manageAnimation("caught")
                 collision.catchedControl(self, True)                                      
             else:

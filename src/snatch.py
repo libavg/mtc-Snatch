@@ -26,7 +26,7 @@
 from libavg import avg
 from game import Game
 
-mtc = True
+mtc = False
 ShowFingers = False
 filenum = 0
 
@@ -67,16 +67,15 @@ Player = avg.Player.get()
 Player.loadFile("snatch.avg")
 Wiese = Player.getElementByID("gras")
 if mtc:
-    Tracker = Player.addTracker("avgtrackerrc")
+    Tracker = Player.addTracker()
     Player.setResolution(1,0,0,0)
     Player.setOnFrameHandler(lambda:updateBitmap(avg.IMG_FINGERS))
     #Player.setOnFrameHandler(dump)
     activateFingers()
-    
 else:
     Player.setResolution(0,0,0,0)
+
 Game(Player,3)
 
-Player.setVBlankFramerate(5)
 Player.play()
 
