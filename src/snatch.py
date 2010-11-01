@@ -26,7 +26,7 @@
 from libavg import avg
 from game import Game
 
-mtc = False
+mtc = True
 ShowFingers = False
 filenum = 0
 
@@ -69,6 +69,7 @@ Wiese = Player.getElementByID("gras")
 if mtc:
     Tracker = Player.addTracker()
     Player.setResolution(1,0,0,0)
+    Player.showCursor(False)
     Player.setOnFrameHandler(lambda:updateBitmap(avg.IMG_FINGERS))
     #Player.setOnFrameHandler(dump)
     activateFingers()
